@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MoviesCorn || Search Results</title>
+    <link rel="icon" href="images/logo/moviescorn.png" type="image/icon type" />
+
+    <style>
+      .checked {
+        color: orange;
+      }
+      .small-section {
+        margin-bottom: 20px;
+        border: 2px solid black;
+        padding: 10px;
+        /* width: 100%; */
+        /* filter: blur(5px); */
+      }
+
+      .glass {
+        backdrop-filter: blur(5px);
+      }
+
+      .se{
+        /* background-color: red; */
+        
+        text-align: center;
+        font-size: 3em;
+      }
+
+      body {
+        background: url(./images/logo/baxkground.jpg);
+        /* position: fixed; */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* background-color: red; */
+        height: 100%;
+      }
+    </style>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <body>
+    <h2 class="glass se">Search Results</h2>
+    <div id="searchResultsContainer" class="glass"></div>
+    <!-- <img src="images/movie-posters/k-drama/queen-of-tears.jpeg" width="200"> -->
+
+    <script>
+      const kDramaMovies = [
+        {
+          title: "Queen of Tears",
+          poster: "images/movie-posters/k-drama/queen-of-tears.jpeg",
+          description: "Queen of Tears (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "My Demon",
+          poster: "images/movie-posters/k-drama/my-demon.jpg",
+          description: "My Demon (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "./webseries/my deamon/index.html",
+          downloadLink: "./webseries/my deamon/downlode.html",
+        },
+        {
+          title: "Fight for MY Way",
+          poster: "images/movie-posters/k-drama/fight-for-my-way.jpeg",
+          description: "Fight for MY Way (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "W-To-The-World",
+          poster: "images/movie-posters/k-drama/w-to-the-world.jpeg",
+          description: "W-To-The-World (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Love Unexpected",
+          poster: "images/movie-posters/k-drama/love-unexpected.jpeg",
+          description: "Love Unexpected (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Big Mouth",
+          poster: "images/movie-posters/k-drama/big-mouth.jpg",
+          description: "Big Mouth (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "THe King Eternal",
+          poster: "images/movie-posters/k-drama/the-king-eternal.jpg",
+          description: "THe King Eternal (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Vincenzo",
+          poster: "images/movie-posters/k-drama/vincenzo.jpeg",
+          description: "Vincenzo (Hindi Dubbed) | Movie-dox",
+          rating: 4,
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+      ];
+
+      const webSeries = [
+        {
+          title: "Money Heist",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Money Heist S01 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Squid Game",
+          poster: "images/movie-posters/webseries/squid-game.webp",
+          rating: 4,
+          description:
+            "Squid Game – Season 1 (2021) Hindi Dubbed WEB-DL 1080p - 720p - 480p",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "House of The Dragon",
+          poster: "images/movie-posters/webseries/house-of-the-dragon.webp",
+          rating: 4,
+          description:
+            "House of the Dragon (2024) (Season 2) Hindi HDRip 720p – 480p – 1080p – Episode 1 Added",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Scam 2023",
+          poster: "images/movie-posters/webseries/scam-2003.webp",
+          rating: 4,
+          description:
+            "Scam 2003 (Season 1) Dual Audio Hindi HDRip – 720p – 480p",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "The Wheel of Time",
+          poster: "images/movie-posters/webseries/the-wheel-of-time.webp",
+          rating: 4,
+          description:
+            "The Wheel of Time 2023 (Season 2) Dual Audio Hindi HDRip – 720p – 480p (COMPLETE)",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Farzi",
+          poster: "images/movie-posters/webseries/farzi.webp",
+          rating: 4,
+          description: "Farzi (2023) Season 1 Hindi HDRip – 720p – 480p",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "The Mandalorian",
+          poster: "images/movie-posters/webseries/the-mandalorian.webp",
+          rating: 4,
+          description:
+            "The Mandalorian (2020) Season 2 Hindi Dual Audio HDRip – 720p – 480p",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Rocket Boys",
+          poster: "images/movie-posters/webseries/rocket-boys.webp",
+          rating: 4,
+          description: "Rocket Boys 2023 Season 2 Hindi HDRip – 720p – 480p",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+      ];
+
+      const southIndianMovies = [
+        {
+          title: "96",
+          poster: "images/movie-posters/south-indian-movie/96.jpg",
+          rating: 4.5,
+          description:
+            "96 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/q6ZUtfg",
+          downloadLink: "https://gplinks.co/q6ZUtfg",
+        },
+        {
+          title: "Animal",
+          poster: "images/movie-posters/south-indian-movie/animal.jpeg",
+          rating: 4.5,
+          description:
+            "Animal Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/Aw6ZExAN",
+          downloadLink: "https://gplinks.co/Aw6ZExAN",
+        },
+        {
+          title: "Bramayugam",
+          poster: "images/movie-posters/south-indian-movie/bramayagum.jpg",
+          rating: 3,
+          description:
+            "Bramayugam Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/DHPcDMw",
+          downloadLink: "https://gplinks.co/DHPcDMw",
+        },
+        {
+          title: "Hanuman",
+          poster: "images/movie-posters/south-indian-movie/Hanuman.jpeg",
+          rating: 4,
+          description:
+            "Hanuman Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Hridayam",
+          poster: "images/movie-posters/south-indian-movie/hridiyam.jpeg",
+          rating: 4,
+          description:
+            "Hridayam Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/5e45S",
+          downloadLink: "https://gplinks.co/5e45S",
+        },
+        {
+          title: "Premalu",
+          poster: "images/movie-posters/south-indian-movie/Premalu.jpg",
+          rating: 4,
+          description:
+            "Premalu Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/wLRb38o",
+          downloadLink: "https://gplinks.co/wLRb38o",
+        },
+        {
+          title: "Virupaksha",
+          poster: "images/movie-posters/south-indian-movie/virupaksam.jpeg",
+          rating: 4,
+          description:
+            "Virupaksha Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Yodha",
+          poster: "images/movie-posters/south-indian-movie/yodha.jpg",
+          rating: 3,
+          description:
+            "Yodha Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+      ];
+      const upcoming = [
+        {
+          title: "Money Heist",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Money Heist S01 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Rampage",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Rampage Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "John Wick",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "John-Wick part-1 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Inception",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Inception Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Money Heist",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Money Heist S01 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Rampage",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Rampage Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "John Wick",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "John-Wick part-1 Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+        {
+          title: "Inception",
+          poster: "images/movie-posters/webseries/money-heist.jpg",
+          rating: 4,
+          description:
+            "Inception Dual Audio {Hindi-English} NetFlix WEB Series WEB-DL ESub",
+          watchLink: "https://gplinks.co/XRs7",
+          downloadLink: "https://gplinks.co/XRs7",
+        },
+      ];
+
+      const allMovies = [
+        ...kDramaMovies,
+        ...webSeries,
+        ...southIndianMovies,
+        ...upcoming,
+      ];
+
+      function getQueryParam(key) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(key);
+      }
+
+      function generateStars(rating) {
+        let stars = "";
+        for (let i = 1; i <= 5; i++) {
+          stars += `<span class="fa fa-star ${
+            i <= rating ? "checked" : ""
+          }"></span>`;
+        }
+        return stars;
+      }
+
+      function renderMovies(movies, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+
+        if (movies.length === 0) {
+          container.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        movies.forEach((movie) => {
+          const card = document.createElement("div");
+          card.className = "small-section";
+          card.innerHTML = `
+      <h3>${movie.title}</h3>
+      <img src="${movie.poster}" width="100" alt="${movie.title}">
+      <div>${generateStars(movie.rating)}</div>
+      <p>${movie.description}</p>
+      <a href="${movie.watchLink}">Watch</a> | <a href="${
+            movie.downloadLink
+          }">Download</a>
+    `;
+          container.appendChild(card);
+        });
+      }
+
+      const query = getQueryParam("query");
+      if (query) {
+        const results = allMovies.filter((movie) =>
+          movie.title.toLowerCase().includes(query.toLowerCase())
+        );
+        renderMovies(results, "searchResultsContainer");
+      }
+    </script>
+  </body>
+</html>
